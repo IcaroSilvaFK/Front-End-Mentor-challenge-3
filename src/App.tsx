@@ -1,25 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useCallback, useState } from 'react';
+
+import { Header } from './components/Header';
+import { ContentCar } from './components/ContentCard';
+import { MenuList } from './components/mobile/MenuList';
+
+import { Container, ShadowContainer, Article } from './styles/home.styles';
 
 function App() {
+  const [isOpenMenuMobile, setIsOpenMenuMobile] = useState(false);
+
+  const handleCloseModal = useCallback(() => setIsOpenMenuMobile(false), []);
+  const handleOpenModal = useCallback(() => setIsOpenMenuMobile(true), []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Header
+        isOpenMenuMobile={isOpenMenuMobile}
+        handleCloseModal={handleCloseModal}
+        handleOpenModal={handleOpenModal}
+      />
+      <ShadowContainer />
+      <Article>
+        <ContentCar />
+        <img
+          src='/assets/illustration-devices.svg'
+          alt='Illustration devices'
+        />
+      </Article>
+      {isOpenMenuMobile && <MenuList />}
+    </Container>
   );
 }
 
