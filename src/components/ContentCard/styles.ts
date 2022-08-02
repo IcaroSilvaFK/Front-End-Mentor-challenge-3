@@ -28,6 +28,7 @@ export const Row = styled.div`
 
     color: ${({ theme }) => theme.colors.grayishBlue};
     letter-spacing: 2px;
+    z-index: 1;
   }
 
   @media screen and (max-width: 500px) {
